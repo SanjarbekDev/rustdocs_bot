@@ -6,7 +6,7 @@ from asyncpg.pool import Pool
 
 from databases import DatabaseURL
 
-from data.config import DATA_URL
+from data.config import DB_HOST,DB_NAME,DB_PASS,DB_USER
 
 class Database:
 
@@ -15,14 +15,14 @@ class Database:
 
     async def create(self):
         self.pool = await asyncpg.create_pool(
-        str(
-            DatabaseURL(DATA_URL)
-        )
-            # user=DB_USER,
-            # password=DB_PASS,
-            # host=DB_HOST,
-            # port=5432,
-            # database=DB_NAME
+        # str(
+        #     DatabaseURL(DATA_URL)
+        # )
+            user=DB_USER,
+            password=DB_PASS,
+            host=DB_HOST,
+            port=5432,
+            database=DB_NAME
         )
 
     async def execute(self, command, *args,
